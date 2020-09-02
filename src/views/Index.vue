@@ -26,8 +26,8 @@
                 <div class="name2">{{swiperStr[language]}}</div>
             </div>
             <div class="swiperBox">
-                <el-carousel class="swiper" :interval="3000" :loop="true">
-                    <el-carousel-item class="per">
+                <el-carousel class="swiper" :interval="3000" :loop="true" height="100%">
+                    <el-carousel-item class="per" style="height:100%">
                         <img class="img" src="../assets/imgs/ele-m-img-01.png" alt="">
                     </el-carousel-item>
                     <el-carousel-item class="per">
@@ -61,8 +61,8 @@ export default {
   data(){
       const num =Math.floor(Math.random()*3)+1;
       return {
-          menuList:[['Trang Chủ','Giới thiệu sản phẩm',' Trả',' Chính sách bảo mật',' Sự phản đối của người dùng','Liên lạc chúng tôi'],
-          ['Home','Product Introduction ','Pay','Privacy policy','User Agressment','Contect Us']
+          menuList:[['Trang Chủ','Giới thiệu sản phẩm','','điều khoản sử dụng','Những điều cần biết','Liên lạc chúng tôi'],
+          ['Home','Product Introduction ','','Privacy policy','User Agreement','Contact Us']
           ],
          swiperData:['../assets/imgs/ele-m-img-01.png','../assets/imgs/ele-m-img-02.png','../assets/imgs/ele-m-img-03.png'],
            swiperStr:['Vui mỗi ngày ','Have fun everyday'],
@@ -113,7 +113,7 @@ export default {
           this.$router.push({path:'/productintroduction'});
           break;
         case 2:
-           window.location.href ="http://pay.buny.vn/"; rel="external nofollow";
+        //    window.location.href ="http://pay.buny.vn/"; rel="external nofollow";
           break;
         case 3:
          this.$router.push({path:'/privacypolicy'});
@@ -259,16 +259,18 @@ export default {
             width: 100%;
             height: 100%;
             .el-carousel__container{
-                width: 100%;
-                height: 100%;
-            }
-            .per{
-                width: 100%;
-                height: 100%; 
-                .img{
-                    height: 100%;
+                position:static;
+                // width: 100%;
+                // height: 100%;
+                .per{
+                    width: 100%;
+                    height: 100%; 
+                    .img{
+                        height: 100%;
+                    }
                 }
             }
+            
         }
     }
    .btnArea{

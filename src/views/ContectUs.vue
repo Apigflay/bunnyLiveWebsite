@@ -2,7 +2,7 @@
   <div class="contectusPage">
       <h4>Bunny Live</h4>
 
-      <p v-if="language==0" class="p1">Giới thiệu sản phẩm</p>
+      <!-- <p v-if="language==0" class="p1">Giới thiệu sản phẩm</p> -->
       <p v-if="language==0" class="p2">Hợp tác kinh doanh:</p>
       <p v-if="language==0" class="p3">contact@bunnylive.me</p>
       <p v-if="language==0" class="p4">Phản hồi:</p>
@@ -10,7 +10,7 @@
       <p v-if="language==0" class="p6">Địa chỉ công ty:</p>
       <p v-if="language==0" class="p7">Lầu 2 , 624 Lạc Long Quân P5 Q11</p>
 
-      <p v-if="language==1" class="p1">Contect Us</p>
+      <!-- <p v-if="language==1" class="p1">Contect Us</p> -->
       <p v-if="language==1" class="p2">Business Cooperation:</p>
       <p v-if="language==1" class="p3">contact@bunnylive.me</p>
       <p v-if="language==1" class="p4">Feedback:</p>
@@ -79,6 +79,9 @@ export default {
         text-align: center;
         font-size: 30px;
         line-height: 140px;
+    }
+    .p2{
+        margin-top: 100px;
     }
     .p2,.p4,.p6{
         font-size: 16px;
