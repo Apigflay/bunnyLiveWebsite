@@ -1,51 +1,63 @@
 <template>
   <div class="indexPage">
-      <!-- menu -->
-      <div class="menuWrap">
-          <div class="menuArea">
-              <div class="menuList">
-                <img class="logo" src="../assets/imgs/logo.jpg" alt="logo">
-                <div class="menuPer" @click="goPages(index)" v-for="(item,index) in menuList[language]" :key="index">{{item}}</div>
-                <div class="menuLArea">
-                    <span>Language:</span>
-                    <span v-if="language==0">VN</span>
-                    <span v-if="language==1">EN</span>
-                    <span class="san" @click="chooseLanguage"></span>
-                    <div class="languageBox" v-if="languageBox">
-                        <div class="per" @click="setLanguage(0)">VN</div>
-                        <div class="per" @click="setLanguage(1)">EN</div>
+      <div class="pageWrap">
+        <!-- menu -->
+        <div class="menuWrap">
+            <div class="menuArea">
+                <div class="menuList">
+                    <img class="logo" src="../assets/imgs/logo.jpg" alt="logo">
+                    <div class="menuPer" @click="goPages(index)" v-for="(item,index) in menuList[language]" :key="index">{{item}}</div>
+                    <div class="menuLArea">
+                        <span>Language:</span>
+                        <span v-if="language==0">VN</span>
+                        <span v-if="language==1">EN</span>
+                        <span class="san" @click="chooseLanguage"></span>
+                        <div class="languageBox" v-if="languageBox">
+                            <div class="per" @click="setLanguage(0)">VN</div>
+                            <div class="per" @click="setLanguage(1)">EN</div>
+                        </div>
                     </div>
+                    <div class="sinUpBtn" @click="goSignUp">{{loginData[language]}}</div>
                 </div>
-              </div>
-          </div>
+            </div>
+        </div>
+        <!-- swiper -->
+        <div class="swiperWrap">
+                <div class="topArea">
+                    <div class="name">Bunny Live</div>
+                    <div class="name2">{{swiperStr[language]}}</div>
+                </div>
+                <div class="swiperBox">
+                    <el-carousel class="swiper" :interval="3000" :loop="true" height="100%">
+                        <el-carousel-item class="per" style="height:100%">
+                            <img class="img" src="../assets/imgs/ele-m-img-01.png" alt="">
+                        </el-carousel-item>
+                        <el-carousel-item class="per">
+                            <img class="img" src="../assets/imgs/ele-m-img-02.png" alt="">
+                        </el-carousel-item>
+                        <el-carousel-item class="per">
+                            <img class="img" src="../assets/imgs/ele-m-img-03.png" alt="">
+                        </el-carousel-item>
+                    </el-carousel>
+                </div>
+                <div class="btnArea">
+                    <span class="img1" @click="goDown(1)"><img src="../assets/imgs/ele-btn-bg-ios.png" alt=""></span>
+                    <span class="img2" @click="goDown(2)"><img src="../assets/imgs/ele-btn-bg-google.png" alt=""></span>
+                </div>
+        </div>
+        <!-- footer -->
+        <div class="footerWrap">
+            copyright@2019.CONG TY TNHH BUNY
+        </div>
       </div>
-      <!-- swiper -->
-      <div class="swiperWrap">
-            <div class="topArea">
-                <div class="name">Bunny Live</div>
-                <div class="name2">{{swiperStr[language]}}</div>
-            </div>
-            <div class="swiperBox">
-                <el-carousel class="swiper" :interval="3000" :loop="true" height="100%">
-                    <el-carousel-item class="per" style="height:100%">
-                        <img class="img" src="../assets/imgs/ele-m-img-01.png" alt="">
-                    </el-carousel-item>
-                    <el-carousel-item class="per">
-                        <img class="img" src="../assets/imgs/ele-m-img-02.png" alt="">
-                    </el-carousel-item>
-                    <el-carousel-item class="per">
-                        <img class="img" src="../assets/imgs/ele-m-img-03.png" alt="">
-                    </el-carousel-item>
-                </el-carousel>
-            </div>
-            <div class="btnArea">
-                <span class="img1" @click="goDown(1)"><img src="../assets/imgs/ele-btn-bg-ios.png" alt=""></span>
-                <span class="img2" @click="goDown(2)"><img src="../assets/imgs/ele-btn-bg-google.png" alt=""></span>
-            </div>
-      </div>
-      <!-- footer -->
-      <div class="footerWrap">
-          copyright@2019.CONG TY TNHH BUNY
+      <div class="introArea">
+            server IP :103.127.207.137<br>
+            Công Ty TNHH BUNNY<br>
+            Địa chỉ : B01 , Tầng 1 , 624 Lạc Long Quân , Phường 5 , Quận 11<br>
+            Sđt : 028.66503686<br>
+            Email :bunycompany@gmail.com<br>
+            Người chịu trách nhiệm nội dung: Lâm Bửu Oanh<br>
+            Giấy phép MXH số 206/GP-BTTTT do Bộ TTTT cấp ngày 14/5/2020
       </div>
   </div>
 </template>
@@ -67,6 +79,7 @@ export default {
          swiperData:['../assets/imgs/ele-m-img-01.png','../assets/imgs/ele-m-img-02.png','../assets/imgs/ele-m-img-03.png'],
            swiperStr:['Vui mỗi ngày ','Have fun everyday'],
           languageBox:false,
+          loginData:['Đăng nhập','sign up'],
 
 
 
@@ -125,34 +138,25 @@ export default {
             this.$router.push({path:'/contectus'});
           break;
       }
+    },
+    goSignUp:function(){
+        this.$router.push({path:'/signup'});
     }
   },
-
-
-
-
-
-    getChirldrenMethod:function(msg){
-      this.$store.commit['set_allLanguage',msg]
-    },
-    texttoast:function(id){
-      if(id==1){
-        this.$Toast(true,'哈哈哈')
-      }else if(id==2){
-        this.$Toast(false)
-      }
-    },
-    
-    beforeMount(){
-    },
-    mounted() {
-        //   this.swiper.slideTo(3, 1000, false)
-    }
+  beforeMount(){
+  },
+  mounted() {
+    //   this.swiper.slideTo(3, 1000, false)
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .indexPage{
+  width: 100%;
+  height: 100%;
+}
+.pageWrap{
   width: 100%;
   height: 100%;
   display: flex;
@@ -226,6 +230,12 @@ export default {
               }
               
           }
+      }
+      .sinUpBtn{
+          background: #fc2c5d;
+          padding: 10px 18px;
+          border-radius: 10px;
+          cursor: pointer;
       }
     }
   }
@@ -307,7 +317,9 @@ export default {
     font-size: 16px;
     line-height: 60px;
 }
-
+.introArea{
+    margin-bottom: 20px;
+}
 
 
 </style>

@@ -6,7 +6,8 @@ import ProductIntroduction from '../views/ProductIntroduction.vue'
 import PrivacyPolicy from '../views/PrivacyPolicy.vue'
 import UserAgressment from '../views/UserAgressment.vue'
 import ContectUs from '../views/ContectUs.vue'
-
+import SignUp from '../views/SignUp.vue'
+import Succes from '../views/Succes.vue'
 // import Home from '../views/Home.vue'
 // import Login from '../views/Login.vue'
 // import EditBlog from '../views/EditBlog.vue'
@@ -41,6 +42,17 @@ Vue.use(VueRouter)
     name: 'ContectUs',
     component: ContectUs
   },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/succes',
+    name: 'Succes',
+    component: Succes
+  },
+  
   // {
   //   path: '/login',
   //   name: 'Login',
