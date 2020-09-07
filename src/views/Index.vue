@@ -79,7 +79,7 @@ export default {
          swiperData:['../assets/imgs/ele-m-img-01.png','../assets/imgs/ele-m-img-02.png','../assets/imgs/ele-m-img-03.png'],
            swiperStr:['Vui mỗi ngày ','Have fun everyday'],
           languageBox:false,
-          loginData:['Đăng nhập','sign up'],
+          loginData:['Đăng ký','sign up'],
 
 
 
