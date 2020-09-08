@@ -32,41 +32,97 @@
                 <!-- 2 生日-->
                 <div class="per2 per">
                     <span class="lable">Ngày tháng năm sinh :</span>
+                    <el-select v-model="inputBirth1" placeholder="Ngày" class="ri">
+                        <el-option
+                        v-for="(item,index) in 31"
+                        :key="index"
+                        :label="item"
+                        size="mini"
+                        :value="item">
+                        </el-option>
+                    </el-select>
+                    --
+                    <el-select v-model="inputBirth2" placeholder="Tháng" class="yue">
+                        <el-option
+                        v-for="(item,index) in 12"
+                        :key="index"
+                        :label="item"
+                        :value="item">
+                        </el-option>
+                    </el-select>
+                    --
                     <el-date-picker
+                        format="yyyy"
+                        v-model="inputBirth3"
+                        type="year"
+                        placeholder="Năm">
+                    </el-date-picker>
+
+                    
+
+                    <!-- <el-date-picker
+                    format="dd-MM-yyyy"
                     v-model="inputBirth"
                     type="date"
                     placeholder="" @blur="getInputMsg(2)">
-                    </el-date-picker>
+                    </el-date-picker> -->
                 </div>
                 <p class="per2 per_p" v-if="p2==false">Vui lòng điền lại</p>
                 <!-- 3 证件类型-->
                 <div class="per3 per">
                     <span class="lable">loại chứng chỉ :</span>
                     <el-select v-model="input3" placeholder=""  @blur="getInputMsg(3)">
-                        <el-option label="Thẻ căn cước" value="1"></el-option>
-                        <el-option label="hộ chiếu" value="2"></el-option>
+                        <el-option label="Thẻ căn cước CMND" value="Thẻ căn cước CMND"></el-option>
+                        <el-option label="hộ chiếu" value="hộ chiếu"></el-option>
                     </el-select>
                 </div>
                 <!-- <p class="per3 per_p" v-if="p3==false">Thông tin tên quá dài! Vui lòng điền lại</p> -->
                 <!-- 4 证件号-->
                 <div class="per4 per">
-                    <span class="lable">Số văn kiện :</span>
+                    <span class="lable">Số :</span>
                     <el-input class="lable_input" v-model.trim="input4" placeholder="" maxlength='30' @input="getInputMsg(4)"></el-input>
                 </div>
                 <p class="per4 per_p" v-if="p4==false">Vui lòng điền lại</p>
                 <!-- 5 签发日期-->
                 <div class="per5 per">
                     <span class="lable">Ngày cấp :</span>
-                    <el-date-picker key="2"
-                    v-model="input5"
+
+                    <el-select v-model="input51" placeholder="Ngày" class="ri">
+                        <el-option
+                        v-for="(item,index) in 31"
+                        :key="index"
+                        :label="item"
+                        size="mini"
+                        :value="item">
+                        </el-option>
+                    </el-select>
+                    --
+                    <el-select v-model="input52" placeholder="Tháng" class="yue">
+                        <el-option
+                        v-for="(item,index) in 12"
+                        :key="index"
+                        :label="item"
+                        :value="item">
+                        </el-option>
+                    </el-select>
+                    --
+                    <el-date-picker
+                        format="yyyy"
+                        v-model="input53"
+                        type="year"
+                        placeholder="Năm">
+                    </el-date-picker>
+
+                    <!-- <el-date-picker key="2"
+                    v-model="input51"
                     type="date"
                     placeholder="" @blur="getInputMsg(5)">
-                    </el-date-picker>
+                    </el-date-picker> -->
                 </div>
                 <p class="per5 per_p" v-if="p5==false">Vui lòng điền lại</p>
                 <!-- 6 签发地-->
                 <div class="per5 per">
-                    <span class="lable">Nơi phát hành :</span>
+                    <span class="lable">Nơi cấp :</span>
                     <el-input class="lable_input" v-model.trim="input6" maxlength='30' placeholder="" @input="getInputMsg(6)"></el-input>
                 </div>
                 <p class="per5 per_p" v-if="p6==false">Vui lòng điền lại</p>
@@ -87,6 +143,42 @@
                 <div class="nextBtn" @click="goNext">Bước tiếp theo</div>
             </div>
         </div>
+        <!--  -->
+        <el-dialog class="dialog"
+            title=" Mẹo"
+            :visible.sync="centerDialogVisible"
+            width="30%"
+            center>
+            <div class="dialogDiv">
+                Họ và tên :{{this.inputName}}
+            </div>
+            <div class="dialogDiv">
+                Ngày tháng năm sinh :{{this.inputBirth1<10?'0'+this.inputBirth1:this.inputBirth1}}--{{this.inputBirth2<10?'0'+this.inputBirth2:this.inputBirth2}}--{{this.year1}}
+            </div>
+            <div class="dialogDiv">
+                loại chứng chỉ :{{this.input3}}
+            </div>
+            <div class="dialogDiv">
+                Số :{{this.input4}}
+            </div>
+            <div class="dialogDiv">
+                Ngày cấp :{{this.input51<10?'0'+this.input51:this.input51}}--{{this.input52<10?'0'+this.input52:this.input52}}--{{this.year2}}
+            </div>
+            <div class="dialogDiv">
+                Nơi cấp :{{this.input6}}
+            </div>
+            <div class="dialogDiv">
+                email :{{this.input7}}
+            </div>
+            <div class="dialogDiv">
+                Địa chỉ :{{this.input8}}
+            </div>
+            <!-- <span>需要注意的是内容是默认不居中的</span> -->
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="centerDialogVisible = false">hủy bỏ</el-button>
+                <el-button type="primary" @click="goPageSuccess">xác nhận</el-button>
+            </span>
+        </el-dialog>
   </div>
 </template>
 
@@ -109,13 +201,17 @@ export default {
             loginData:['Đăng nhập','sign up'],
             inputName:'',//name 
             p1:true,//false  错误  true 不显示
-            inputBirth:'',//生日
+            inputBirth1:'',//生日 日
+            inputBirth2:'',//生日 月
+            inputBirth3:'',//生日 年
             p2:true,//false  错误  true 不显示
-            input3:'1',//证件类型
+            input3:'Thẻ căn cước CMND',//证件类型
             p3:true,//false  错误  true 不显示
             input4:'',//证件号
             p4:true,//false  错误  true 不显示
-            input5:'',//签发日期
+            input51:'',//签发日期 日
+            input52:'',//签发日期 月
+            input53:'',//签发日期 年
             p5:true,//false  错误  true 不显示
             input6:'',//签发地
             p6:true,//false  错误  true 不显示
@@ -123,6 +219,8 @@ export default {
             p7:true,//false  错误  true 不显示
             input8:'',//地址
             p8:true,//false  错误  true 不显示
+
+            centerDialogVisible: false,//dialog
 
 
 
@@ -140,7 +238,15 @@ export default {
       return this.$store.getters['AllallLanguage']
     },
     allIs(){
-        return this.inputName!=''&&this.inputBirth!=''&&this.input4!=''&&this.input5!=''&&this.input6!=''&&this.input7!=''&&this.input8!='';
+        return this.inputName!=''&&this.inputBirth1!=''&&this.inputBirth2!=''&&this.inputBirth3!=''&&this.input4!=''&&this.input51!=''&&this.input6!=''&&this.input7!=''&&this.input8!='';
+    },
+    year1(){
+        var y = new Date(this.inputBirth3).getFullYear()
+        return y
+    },
+    year2(){
+        var y = new Date(this.input53).getFullYear()
+        return y
     }
   },
   watch:{
@@ -249,22 +355,33 @@ export default {
         }
     },
     goNext:function(){
-        console.log(this.inputName)
-        console.log(this.inputBirth)
-        console.log(this.input3)
-        console.log(this.input4)
-        console.log(this.input5)
-        console.log(this.input6)
-        console.log(this.input7)
-        console.log(this.input8)
+        console.log(this.year1)
+        console.log(this.year2)
+        console.log(this.allIs)
+        console.log(this.inputName,'----------1')
+        console.log(this.inputBirth1,this.inputBirth2,this.inputBirth3,'----------2')
+        console.log(this.input3,'----------3')
+        console.log(this.input4,'----------4')
+        console.log(this.input51,this.input52,this.input53,'----------5')
+        console.log(this.input6,'----------6')
+        console.log(this.input7,'----------7')
+        console.log(this.input8,'----------8')
         if(this.p1==true&&this.p2==true&&this.p4==true&&this.p5==true&&this.p6==true&&this.p7==true&&this.p8==true&&this.allIs==true){
-            this.$message('Thông tin đã điền đầy đủ, vui lòng tải APP để hoàn thành bước cuối cùng');
-            this.$router.push({path:'/succes'});
+            
+            this.centerDialogVisible=true;
+            // this.$message('Thông tin đã điền đầy đủ, vui lòng tải APP để hoàn thành bước cuối cùng');
+            // this.$router.push({path:'/succes'});
 
         }else{
             this.$message('Vui lòng điền lại');
         }
         
+    },
+    goPageSuccess:function(){
+        this.centerDialogVisible=false;
+        this.$message('Thông tin đã điền đầy đủ, vui lòng tải APP để hoàn thành bước cuối cùng');
+        this.$router.push({path:'/succes'});
+
     }
 
   },
@@ -384,6 +501,9 @@ export default {
                 width: 300px;
                 height: 40px;
             }
+            .ri,.yue{
+                width: 100px;
+            }
         }
         .per_p{
             height: 24px;
@@ -404,6 +524,12 @@ export default {
             line-height: 50px;
             text-align: center;
         }
+    }
+}
+.dialog{
+    .dialogDiv{
+        line-height: 30px;
+        font-size: 16px;
     }
 }
 </style>

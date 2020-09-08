@@ -15,7 +15,8 @@ Vue.prototype.$axios = axios; //添加axios到Vue的原型对象上
 //按需引入
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(ElementUI);
+import viLocal from 'element-ui/lib/locale/lang/vi' 
+Vue.use(ElementUI,{viLocal});
 
 
 function toastT(tf,msg,id){//

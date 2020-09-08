@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="introArea">
-            server IP :103.127.207.137<br>
+            <!-- server IP :103.127.207.137<br> -->
             Công Ty TNHH BUNNY<br>
             Địa chỉ : B01 , Tầng 1 , 624 Lạc Long Quân , Phường 5 , Quận 11<br>
             Sđt : 028.66503686<br>
