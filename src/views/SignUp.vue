@@ -138,8 +138,13 @@
                     <el-input class="lable_input" v-model.trim="input8" placeholder="" @input="getInputMsg(8)"></el-input>
                 </div>
                 <p class="per5 per_p" v-if="p8==false">Vui lòng điền lại</p>
-                
-                <!-- 9 -->
+                 <!-- 9 电话-->
+                <div class="per5 per">
+                    <span class="lable">SĐT :</span>
+                    <el-input class="lable_input" maxlength='10' v-model.trim="input9" placeholder="" @input="getInputMsg(9)"></el-input>
+                </div>
+                <p class="per5 per_p" v-if="p9==false">Vui lòng điền lại</p>
+                <!-- 10 -->
                 <div class="nextBtn" @click="goNext">Bước tiếp theo</div>
             </div>
         </div>
@@ -172,6 +177,9 @@
             </div>
             <div class="dialogDiv">
                 Địa chỉ :{{this.input8}}
+            </div>
+            <div class="dialogDiv">
+                SĐT :{{this.input9}}
             </div>
             <!-- <span>需要注意的是内容是默认不居中的</span> -->
             <span slot="footer" class="dialog-footer">
@@ -219,6 +227,8 @@ export default {
             p7:true,//false  错误  true 不显示
             input8:'',//地址
             p8:true,//false  错误  true 不显示
+            input9:'',//地址
+            p9:true,//false  错误  true 不显示
 
             centerDialogVisible: false,//dialog
 
@@ -238,7 +248,7 @@ export default {
       return this.$store.getters['AllallLanguage']
     },
     allIs(){
-        return this.inputName!=''&&this.inputBirth1!=''&&this.inputBirth2!=''&&this.inputBirth3!=''&&this.input4!=''&&this.input51!=''&&this.input6!=''&&this.input7!=''&&this.input8!='';
+        return this.inputName!=''&&this.inputBirth1!=''&&this.inputBirth2!=''&&this.inputBirth3!=''&&this.input4!=''&&this.input51!=''&&this.input6!=''&&this.input7!=''&&this.input8!=''&&this.input9!='';
     },
     year1(){
         var y = new Date(this.inputBirth3).getFullYear()
@@ -291,7 +301,7 @@ export default {
         this.$router.push({path:'/signup'});
     },
     getInputMsg:function(id){
-        console.log(id)
+        // console.log(id)
         if(id==1){
             if(this.inputName.length>5){
                 this.p1=true;
@@ -305,14 +315,14 @@ export default {
                 this.p2=true;
             }
         }else if(id==3){
-            console.log(this.input3)
+            // console.log(this.input3)
             if(this.input3==''){
                 this.p3=false;
             }else{
                 this.p3=true;
             }
         }else if(id==4){
-            console.log(this.input4)
+            // console.log(this.input4)
             if(this.input4.length<12&&this.input4.length>8){
                 this.p4=true;
             }else{
@@ -320,7 +330,7 @@ export default {
             }
         }
         else if(id==5){
-            console.log(this.input5=='')
+            // console.log(this.input5=='')
             if(this.input5==''){
                 this.p5=false;
             }else{
@@ -328,7 +338,7 @@ export default {
             }
         }
         else if(id==6){
-            console.log(this.input6)
+            // console.log(this.input6)
             if(this.input6.length<31&&this.input6.length>6){
                 this.p6=true;
             }else{
@@ -336,7 +346,7 @@ export default {
             }
         }
         else if(id==7){
-            console.log(this.input7)
+            // console.log(this.input7)
             var reg = new RegExp("^[a-z0-9A-Z]+[- | a-z0-9A-Z . _]+@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-z]{2,}$"); 
             var test =reg.test(this.input7);
             if(test==true){
@@ -346,27 +356,34 @@ export default {
             }
         }
         else if(id==8){
-            console.log(this.input8)
+            // console.log(this.input8)
             if(this.input8.length<31&&this.input8.length>6){
                 this.p8=true;
             }else{
                 this.p8=false;
             }
+        }else if(id==9){
+            // console.log(this.input9)
+            if(this.input9.length<10){
+                this.p9=false;
+            }else{
+                this.p9=true;
+            }
         }
     },
     goNext:function(){
-        console.log(this.year1)
-        console.log(this.year2)
-        console.log(this.allIs)
-        console.log(this.inputName,'----------1')
-        console.log(this.inputBirth1,this.inputBirth2,this.inputBirth3,'----------2')
-        console.log(this.input3,'----------3')
-        console.log(this.input4,'----------4')
-        console.log(this.input51,this.input52,this.input53,'----------5')
-        console.log(this.input6,'----------6')
-        console.log(this.input7,'----------7')
-        console.log(this.input8,'----------8')
-        if(this.p1==true&&this.p2==true&&this.p4==true&&this.p5==true&&this.p6==true&&this.p7==true&&this.p8==true&&this.allIs==true){
+        // console.log(this.year1)
+        // console.log(this.year2)
+        // console.log(this.allIs)
+        // console.log(this.inputName,'----------1')
+        // console.log(this.inputBirth1,this.inputBirth2,this.inputBirth3,'----------2')
+        // console.log(this.input3,'----------3')
+        // console.log(this.input4,'----------4')
+        // console.log(this.input51,this.input52,this.input53,'----------5')
+        // console.log(this.input6,'----------6')
+        // console.log(this.input7,'----------7')
+        // console.log(this.input8,'----------8')
+        if(this.p1==true&&this.p2==true&&this.p4==true&&this.p5==true&&this.p6==true&&this.p7==true&&this.p8==true&&this.p9==true&&this.allIs==true){
             
             this.centerDialogVisible=true;
             // this.$message('Thông tin đã điền đầy đủ, vui lòng tải APP để hoàn thành bước cuối cùng');
