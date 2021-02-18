@@ -123,7 +123,7 @@
                 <!-- 6 签发地-->
                 <div class="per5 per">
                     <span class="lable">Nơi cấp :</span>
-                    <el-input class="lable_input" v-model.trim="input6" maxlength='30' placeholder="" @input="getInputMsg(6)"></el-input>
+                    <el-input class="lable_input" v-model="input6" maxlength='30' placeholder="" @input="getInputMsg(6)"></el-input>
                 </div>
                 <p class="per5 per_p" v-if="p6==false">Vui lòng điền lại</p>
                 <!-- 7 email-->
@@ -135,7 +135,7 @@
                 <!-- 8 地址-->
                 <div class="per5 per">
                     <span class="lable">Địa chỉ :</span>
-                    <el-input class="lable_input" v-model.trim="input8" placeholder="" @input="getInputMsg(8)"></el-input>
+                    <el-input class="lable_input" v-model="input8" placeholder="" @input="getInputMsg(8)"></el-input>
                 </div>
                 <p class="per5 per_p" v-if="p8==false">Vui lòng điền lại</p>
                  <!-- 9 电话-->
@@ -144,8 +144,15 @@
                     <el-input class="lable_input" maxlength='10' v-model.trim="input9" placeholder="" @input="getInputMsg(9)"></el-input>
                 </div>
                 <p class="per5 per_p" v-if="p9==false">Vui lòng điền lại</p>
+                <!-- 新增checkbox -->
+                <div class="checkBoxArea">
+                    <input class="input" type="checkbox" v-model="checkBoxStatus" @change="chooseCheckBox">
+                    <span class="span1">Tôi đã xem và đồng ý với điều khoản sử dụng</span>
+                    <span class="span2" @click="goThreePage">điều khoản sử dụng</span>
+                </div>
                 <!-- 10 -->
-                <div class="nextBtn" @click="goNext">Bước tiếp theo</div>
+                <div v-if="btnClickStatus==0" class="nextBtn huiNextBtn">Bước tiếp theo</div>
+                <div v-if="btnClickStatus==1" class="nextBtn" @click="goNext">Bước tiếp theo</div>
             </div>
         </div>
         <!--  -->
@@ -200,8 +207,8 @@ export default {
   data(){
       const num =Math.floor(Math.random()*3)+1;
       return {
-            menuList:[['Trang Chủ','Giới thiệu sản phẩm','','điều khoản sử dụng','Những điều cần biết','Liên lạc chúng tôi'],
-                ['Home','Product Introduction ','','Privacy policy','User Agreement','Contact Us']
+            menuList:[['Trang Chủ','Giới thiệu sản phẩm','','Những điều cần biết','điều khoản sử dụng','Liên lạc chúng tôi'],
+                ['Home','Product Introduction ','','User Agreement','Privacy policy','Contact Us']
             ],
             swiperData:['../assets/imgs/ele-m-img-01.png','../assets/imgs/ele-m-img-02.png','../assets/imgs/ele-m-img-03.png'],
             swiperStr:['Vui mỗi ngày ','Have fun everyday'],
@@ -231,6 +238,9 @@ export default {
             p9:true,//false  错误  true 不显示
 
             centerDialogVisible: false,//dialog
+
+            btnClickStatus:0,//默认为0 灰色  当check选中 变红
+            checkBoxStatus:false,//
 
 
 
@@ -287,10 +297,12 @@ export default {
         //    window.location.href ="http://pay.buny.vn/"; rel="external nofollow";
           break;
         case 3:
-         this.$router.push({path:'/privacypolicy'});
+            this.$router.push({path:'/useragressment'});
+        //  this.$router.push({path:'/privacypolicy'});
           break;
         case 4:
-            this.$router.push({path:'/useragressment'});
+            this.$router.push({path:'/privacypolicy'});
+            // this.$router.push({path:'/useragressment'});
           break;
         case 5:
             this.$router.push({path:'/contectus'});
@@ -399,6 +411,17 @@ export default {
         this.$message('Thông tin đã điền đầy đủ, vui lòng tải APP để hoàn thành bước cuối cùng');
         this.$router.push({path:'/succes'});
 
+    },
+    chooseCheckBox:function(){//
+        if(this.checkBoxStatus==true){
+            this.btnClickStatus=1;
+        }else if(this.checkBoxStatus==false){
+            this.btnClickStatus=0;
+        }
+        // console.log(this.checkBoxStatus)
+    },
+    goThreePage:function(){
+        this.$router.push({path:'/privacypolicy'});
     }
 
   },
@@ -540,6 +563,26 @@ export default {
             color: #fff;
             line-height: 50px;
             text-align: center;
+            cursor: pointer;
+        }
+        .huiNextBtn{
+            background: #cecece;
+            cursor: pointer;
+        }
+        .checkBoxArea{
+            font-size: 14px;
+            margin-top: 15px;
+            .input{
+                margin-left: 80px;
+            }
+            .span1{
+                margin-left: 10px;
+            }
+            .span2{
+                text-decoration: underline;
+                margin-left: 14px;
+                cursor: pointer;
+            }
         }
     }
 }

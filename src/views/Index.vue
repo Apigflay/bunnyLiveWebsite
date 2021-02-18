@@ -73,8 +73,8 @@ export default {
   data(){
       const num =Math.floor(Math.random()*3)+1;
       return {
-          menuList:[['Trang Chủ','Giới thiệu sản phẩm','','điều khoản sử dụng','Những điều cần biết','Liên lạc chúng tôi'],
-          ['Home','Product Introduction ','','Privacy policy','User Agreement','Contact Us']
+          menuList:[['Trang Chủ','Giới thiệu sản phẩm','','Những điều cần biết','điều khoản sử dụng','Liên lạc chúng tôi'],
+          ['Home','Product Introduction ','','User Agreement','Privacy policy','Contact Us']
           ],
          swiperData:['../assets/imgs/ele-m-img-01.png','../assets/imgs/ele-m-img-02.png','../assets/imgs/ele-m-img-03.png'],
            swiperStr:['Vui mỗi ngày ','Have fun everyday'],
@@ -129,10 +129,12 @@ export default {
         //    window.location.href ="http://pay.buny.vn/"; rel="external nofollow";
           break;
         case 3:
-         this.$router.push({path:'/privacypolicy'});
+            this.$router.push({path:'/useragressment'});
+        //  this.$router.push({path:'/privacypolicy'});
           break;
         case 4:
-            this.$router.push({path:'/useragressment'});
+            this.$router.push({path:'/privacypolicy'});
+            // this.$router.push({path:'/useragressment'});
           break;
         case 5:
             this.$router.push({path:'/contectus'});
